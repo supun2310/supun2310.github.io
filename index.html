@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supun's Portfolio | Frontend & UI/UX Designer</title>
+    <meta name="description"
+        content="Modern portfolio of Supun, a Frontend Web Developer, UI/UX Designer, and WordPress expert.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background Effects -->
+    <div class="blob shape-1"></div>
+    <div class="blob shape-2"></div>
+    <div class="blob shape-3"></div>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">Supun<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero fade-in-section">
+            <div class="hero-content">
+                <h2 class="subtitle">Welcome to my universe</h2>
+                <h1 class="title">Hi, I'm <span class="gradient-text">Supun</span></h1>
+                <p class="description">
+                    <span class="typing-text">Frontend Developer</span><span class="cursor">|</span>
+                </p>
+                <p class="intro-description">
+                    I craft beautiful, modern digital experiences combining solid web development with exceptional UI/UX
+                    design.
+                </p>
+                <div class="cta-group">
+                    <a href="#projects" class="btn btn-primary">See My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Github"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-wrapper glass-panel">
+                    <!-- Placeholder image - you can replace src with your actual photo -->
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                        alt="Supun working on code">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about fade-in-section">
+            <div class="section-header">
+                <h2>About <span class="gradient-text">Me</span></h2>
+                <div class="line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text glass-panel">
+                    <h3>Bridging the gap between Design & Engineering</h3>
+                    <p>As a multi-disciplinary professional, I specialize in both Web Development and Graphic UI/UX
+                        Design. My unique background allows me to ensure that beautiful designs are flawlessly executed
+                        in code.</p>
+                    <p>Currently, I focus on Frontend Development and developing customized solutions in WordPress. I
+                        believe in writing clean, scalable code while creating intuitive interfaces that users love.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills fade-in-section">
+            <div class="section-header">
+                <h2>My <span class="gradient-text">Expertise</span></h2>
+                <div class="line"></div>
+            </div>
+            <div class="skills-grid">
+
+                <div class="skill-card glass-panel">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Frontend Development</h3>
+                    <p>Building responsive, accessible, and fast web applications using HTML5, CSS3/Tailwind, and
+                        JavaScript.</p>
+                </div>
+
+                <div class="skill-card glass-panel">
+                    <div class="skill-icon">
+                        <i class="fas fa-pen-nib"></i>
+                    </div>
+                    <h3>UI/UX & Graphic Design</h3>
+                    <p>Creating intuitive user flows, wireframes, high-fidelity mockups, and stunning graphical assets.
+                    </p>
+                </div>
+
+                <div class="skill-card glass-panel">
+                    <div class="skill-icon">
+                        <i class="fab fa-wordpress"></i>
+                    </div>
+                    <h3>WordPress Development</h3>
+                    <p>Creating custom themes, configuring plugins, and building manageable CMS solutions for clients.
+                    </p>
+                </div>
+
+                <div class="skill-card glass-panel">
+                    <div class="skill-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Bringing ideas to life on the internet with robust full-cycle development practices.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects fade-in-section">
+            <div class="section-header">
+                <h2>Featured <span class="gradient-text">Work</span></h2>
+                <div class="line"></div>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="All">All</button>
+                <button class="filter-btn" data-filter="Web Dev">Web Dev</button>
+                <button class="filter-btn" data-filter="Frontend">Frontend</button>
+                <button class="filter-btn" data-filter="UI/UX">UI/UX</button>
+                <button class="filter-btn" data-filter="WordPress">WordPress</button>
+            </div>
+
+            <!-- Dynamic Projects Container -->
+            <div class="projects-grid" id="portfolio-projects">
+                <!-- Projects will be dynamically loaded here by script.js -->
+                <div class="loading-spinner" style="text-align: center; width: 100%; grid-column: 1 / -1;">
+                    <i class="fas fa-circle-notch fa-spin"></i> Loading Projects...
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact fade-in-section">
+            <div class="section-header">
+                <h2>Let's <span class="gradient-text">Connect</span></h2>
+                <div class="line"></div>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info glass-panel">
+                    <h3>Ready to start your next project?</h3>
+                    <p>Whether you have a question or just want to say hi, my inbox is always open. I'll try my best to
+                        get back to you!</p>
+
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>hello@supun.dev</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Available for Remote Work</span>
+                    </div>
+                </div>
+
+                <form class="contact-form glass-panel">
+                    <div class="form-group">
+                        <input type="text" id="name" required placeholder=" ">
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" required placeholder=" ">
+                        <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" required placeholder=" "></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit-btn">Send Message <i
+                            class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <a href="#home" class="logo">Supun<span>.</span></a>
+            <p>&copy; 2026 Supun. All rights reserved.</p>
+            <div class="footer-socials">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Define script as module so we can use Firebase imports -->
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>

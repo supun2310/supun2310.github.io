@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+
+    <!-- Firebase SDKs -->
+    <script type="module" src="admin.js" defer></script>
+</head>
+<body>
+    <div class="blob shape-1"></div>
+    <div class="blob shape-2"></div>
+    
+    <main class="admin-container">
+        
+        <!-- Login Screen -->
+        <section id="login-section" class="glass-panel auth-panel">
+            <h2 class="gradient-text"><i class="fas fa-lock"></i> Admin Login</h2>
+            <p>Please sign in to manage your portfolio.</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <input type="email" id="admin-email" required placeholder=" ">
+                    <label for="admin-email">Email</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="admin-password" required placeholder=" ">
+                    <label for="admin-password">Password</label>
+                </div>
+                <p id="auth-error" class="error-msg"></p>
+                <button type="submit" class="btn btn-primary submit-btn">Login</button>
+            </form>
+        </section>
+
+        <!-- Admin Dashboard -->
+        <section id="dashboard-section" class="dashboard-panel hidden">
+            <header class="dashboard-header">
+                <h2>Manage <span class="gradient-text">Projects</span></h2>
+                <button id="logout-btn" class="btn btn-secondary"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </header>
+
+            <div class="dashboard-grid">
+                
+                <!-- Add New Project Form -->
+                <div class="glass-panel edit-panel">
+                    <h3><i class="fas fa-plus-circle"></i> Add New Project</h3>
+                    <form id="add-project-form">
+                        <div class="form-group">
+                            <input type="text" id="proj-title" required placeholder=" ">
+                            <label for="proj-title">Project Title</label>
+                        </div>
+                        <div class="form-group">
+                            <select id="proj-category" required>
+                                <option value="" disabled selected>Select Category</option>
+                                <option value="Web Dev">Web Development</option>
+                                <option value="Frontend">Frontend</option>
+                                <option value="UI/UX">UI/UX Design</option>
+                                <option value="WordPress">WordPress</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="url" id="proj-image" required placeholder=" ">
+                            <label for="proj-image">Image URL</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="url" id="proj-link" placeholder=" ">
+                            <label for="proj-link">Live Project / Demo Link</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="proj-desc" rows="4" required placeholder=" "></textarea>
+                            <label for="proj-desc">Short Description</label>
+                        </div>
+                        <button type="submit" id="add-project-btn" class="btn btn-primary submit-btn">Save Project</button>
+                    </form>
+                </div>
+
+                <!-- Live Project List -->
+                <div class="glass-panel list-panel">
+                    <h3><i class="fas fa-list"></i> Your Projects</h3>
+                    <div id="admin-projects-list" class="admin-projects-wrap">
+                        <!-- Projects loaded via JS -->
+                        <div class="loading-spinner"><i class="fas fa-circle-notch fa-spin"></i> Loading...</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
