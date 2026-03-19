@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Typewriter Effect ---
     const typeWriterElement = document.querySelector('.typing-text');
-    const words = ['Frontend Developer', 'UI/UX Designer', 'WordPress Expert', 'Graphic Designer'];
+    const words = ['Web Developer', 'UI/UX Designer', 'WordPress Expert', 'Network Engineer', 'System Administrator'];
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
