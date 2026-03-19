@@ -88,7 +88,7 @@ addProjectForm.addEventListener('submit', async (e) => {
         await addDoc(collection(db, "projects"), {
             title: title,
             category: category,
-            imageUrl: imageUrl,
+            imageUrl: imageUrl, 
             link: link,
             description: description,
             createdAt: new Date().toISOString()

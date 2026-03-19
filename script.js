@@ -131,26 +131,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Form Submission Handling ---
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
             const submitBtn = contactForm.querySelector('.submit-btn');
             const originalText = submitBtn.innerHTML;
 
             submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
 
-            setTimeout(() => {
-                alert(`Thank you, ${name}! Your message has been received. I will get back to you at ${email} shortly.`);
-                contactForm.reset();
-                submitBtn.innerHTML = 'Message Sent <i class="fas fa-check"></i>';
-                submitBtn.style.background = '#00d2ff';
+            try {
+                // Send AJAX POST request to FormSubmit Free API
+                const response = await fetch("https://formsubmit.co/ajax/uds67162@gmail.com", {
+                    method: "POST",
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        message: message
+                    })
+                });
 
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.background = '';
-                }, 3000);
-            }, 1500);
+                if (response.ok) {
+                    contactForm.reset();
+                    submitBtn.innerHTML = 'Message Sent <i class="fas fa-check"></i>';
+                    submitBtn.style.background = '#00d2ff';
+                } else {
+                    alert("Oops! There was a problem submitting your form.");
+                    submitBtn.innerHTML = 'Error <i class="fas fa-times"></i>';
+                    submitBtn.style.background = '#ff4b4b';
+                }
+            } catch (error) {
+                alert("Oops! There was a network error. Ensure ad-blockers aren't blocking the form.");
+                submitBtn.innerHTML = 'Error <i class="fas fa-times"></i>';
+                submitBtn.style.background = '#ff4b4b';
+            }
+
+            // Revert button after 3 seconds
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.background = '';
+            }, 3000);
         });
     }
 
