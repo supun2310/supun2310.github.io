@@ -76,9 +76,27 @@ addProjectForm.addEventListener('submit', async (e) => {
 
     const title = document.getElementById('proj-title').value;
     const category = document.getElementById('proj-category').value;
-    const imageUrl = document.getElementById('proj-image').value;
+    let imageUrl = document.getElementById('proj-image').value;
     const link = document.getElementById('proj-link').value;
     const description = document.getElementById('proj-desc').value;
+
+    // Convert Google Drive sharing link to direct image view link
+    try {
+        if (imageUrl) {
+            const urlObj = new URL(imageUrl);
+            if (urlObj.hostname.includes('drive.google.com')) {
+                const paths = urlObj.pathname.split('/');
+                if (paths.includes('file') && paths.includes('d')) {
+                    const fileId = paths[paths.indexOf('d') + 1];
+                    imageUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+                } else if (urlObj.searchParams.get('id')) {
+                    imageUrl = `https://drive.google.com/uc?export=view&id=${urlObj.searchParams.get('id')}`;
+                }
+            }
+        }
+    } catch (e) {
+        // Handled silently
+    }
     const btn = document.getElementById('add-project-btn');
 
     try {
@@ -125,10 +143,24 @@ async function loadProjects() {
             const data = doc.data();
             const id = doc.id;
 
+            let imgSrc = data.imageUrl || '';
+            try {
+                const urlObj = new URL(imgSrc);
+                if (urlObj.hostname.includes('drive.google.com')) {
+                    const paths = urlObj.pathname.split('/');
+                    if (paths.includes('file') && paths.includes('d')) {
+                        const fileId = paths[paths.indexOf('d') + 1];
+                        imgSrc = `https://drive.google.com/uc?export=view&id=${fileId}`;
+                    } else if (urlObj.searchParams.get('id')) {
+                        imgSrc = `https://drive.google.com/uc?export=view&id=${urlObj.searchParams.get('id')}`;
+                    }
+                }
+            } catch (e) {}
+
             const div = document.createElement('div');
             div.className = 'admin-project-item';
             div.innerHTML = `
-                <img src="${data.imageUrl}" class="admin-proj-img" alt="${data.title}">
+                <img src="${imgSrc}" class="admin-proj-img" alt="${data.title}">
                 <div class="admin-proj-info">
                     <h4>${data.title}</h4>
                     <span>${data.category}</span>

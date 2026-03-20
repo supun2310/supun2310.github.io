@@ -224,10 +224,24 @@ document.addEventListener('DOMContentLoaded', () => {
         projectsToRender.forEach(project => {
             const card = document.createElement('div');
             card.className = 'project-card glass-panel fade-in-section';
+            
+            let imgSrc = project.imageUrl || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80';
+            try {
+                const urlObj = new URL(imgSrc);
+                if (urlObj.hostname.includes('drive.google.com')) {
+                    const paths = urlObj.pathname.split('/');
+                    if (paths.includes('file') && paths.includes('d')) {
+                        const fileId = paths[paths.indexOf('d') + 1];
+                        imgSrc = `https://drive.google.com/uc?export=view&id=${fileId}`;
+                    } else if (urlObj.searchParams.get('id')) {
+                        imgSrc = `https://drive.google.com/uc?export=view&id=${urlObj.searchParams.get('id')}`;
+                    }
+                }
+            } catch (e) {}
 
             card.innerHTML = `
                 <div class="project-img">
-                    <img src="${project.imageUrl || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'}" alt="${project.title}">
+                    <img src="${imgSrc}" alt="${project.title}">
                 </div>
                 <div class="project-info">
                     <div class="project-tags">
