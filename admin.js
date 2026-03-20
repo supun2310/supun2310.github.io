@@ -88,9 +88,9 @@ addProjectForm.addEventListener('submit', async (e) => {
                 const paths = urlObj.pathname.split('/');
                 if (paths.includes('file') && paths.includes('d')) {
                     const fileId = paths[paths.indexOf('d') + 1];
-                    imageUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+                    imageUrl = `https://lh3.googleusercontent.com/d/${fileId}`;
                 } else if (urlObj.searchParams.get('id')) {
-                    imageUrl = `https://drive.google.com/uc?export=view&id=${urlObj.searchParams.get('id')}`;
+                    imageUrl = `https://lh3.googleusercontent.com/d/${urlObj.searchParams.get('id')}`;
                 }
             }
         }
@@ -150,9 +150,9 @@ async function loadProjects() {
                     const paths = urlObj.pathname.split('/');
                     if (paths.includes('file') && paths.includes('d')) {
                         const fileId = paths[paths.indexOf('d') + 1];
-                        imgSrc = `https://drive.google.com/uc?export=view&id=${fileId}`;
+                        imgSrc = `https://lh3.googleusercontent.com/d/${fileId}`;
                     } else if (urlObj.searchParams.get('id')) {
-                        imgSrc = `https://drive.google.com/uc?export=view&id=${urlObj.searchParams.get('id')}`;
+                        imgSrc = `https://lh3.googleusercontent.com/d/${urlObj.searchParams.get('id')}`;
                     }
                 }
             } catch (e) {}
