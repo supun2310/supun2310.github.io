@@ -344,6 +344,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Slider Logic ---
+    const sliderPrev = document.getElementById('slider-prev');
+    const sliderNext = document.getElementById('slider-next');
+    
+    if (sliderPrev && sliderNext && projectsContainer) {
+        sliderPrev.addEventListener('click', () => {
+            const cardElement = projectsContainer.querySelector('.project-card');
+            const cardWidth = cardElement ? cardElement.offsetWidth : 300;
+            const gap = parseFloat(getComputedStyle(projectsContainer).gap) || 40;
+            projectsContainer.scrollBy({ left: -(cardWidth + gap), behavior: 'smooth' });
+        });
+
+        sliderNext.addEventListener('click', () => {
+            const cardElement = projectsContainer.querySelector('.project-card');
+            const cardWidth = cardElement ? cardElement.offsetWidth : 300;
+            const gap = parseFloat(getComputedStyle(projectsContainer).gap) || 40;
+            projectsContainer.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
+        });
+    }
+
     // Initial Fetch
     if (projectsContainer) {
         fetchProjects();

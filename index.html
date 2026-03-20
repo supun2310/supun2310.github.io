@@ -180,11 +180,15 @@
             </div>
 
             <!-- Dynamic Projects Container -->
-            <div class="projects-grid" id="portfolio-projects">
-                <!-- Projects will be dynamically loaded here by script.js -->
-                <div class="loading-spinner" style="text-align: center; width: 100%; grid-column: 1 / -1;">
-                    <i class="fas fa-circle-notch fa-spin"></i> Loading Projects...
+            <div class="projects-slider-wrapper">
+                <button class="slider-btn prev-btn" id="slider-prev" aria-label="Previous Project"><i class="fas fa-chevron-left"></i></button>
+                <div class="projects-grid" id="portfolio-projects">
+                    <!-- Projects will be dynamically loaded here by script.js -->
+                    <div class="loading-spinner" style="text-align: center; width: 100%; flex: 0 0 100%;">
+                        <i class="fas fa-circle-notch fa-spin"></i> Loading Projects...
+                    </div>
                 </div>
+                <button class="slider-btn next-btn" id="slider-next" aria-label="Next Project"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
 
