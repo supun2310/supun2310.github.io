@@ -249,9 +249,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <h3>${project.title}</h3>
                     <p>${project.description}</p>
-                    <a href="${project.link || '#'}" target="_blank" class="view-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                    <button class="view-btn open-modal-btn" style="background:none;border:none;font:inherit;cursor:pointer;padding:0;">View Details <i class="fas fa-arrow-right"></i></button>
                 </div>
             `;
+            
+            const openBtn = card.querySelector('.open-modal-btn');
+            openBtn.addEventListener('click', () => {
+                if (window.openProjectModal) {
+                    window.openProjectModal(project, imgSrc);
+                }
+            });
+
             projectsContainer.appendChild(card);
 
             // Observe new elements for scroll animation
@@ -277,6 +285,64 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // --- Modal Logic ---
+    const modalOverlay = document.getElementById('project-modal');
+    
+    if (modalOverlay) {
+        const closeModalBtn = modalOverlay.querySelector('.close-modal');
+        const modalTags = document.getElementById('modal-tags');
+        const modalTitle = document.getElementById('modal-title');
+        const modalImgMain = document.getElementById('modal-img-main');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalLink = document.getElementById('modal-link');
+        const modalScreenshotsContainer = document.getElementById('modal-screenshots-container');
+
+        // Allow script.js to call this from render hook
+        window.openProjectModal = function(project, imgSrc) {
+            modalTitle.textContent = project.title;
+            modalTags.innerHTML = `<span>${project.category}</span>`;
+            modalImgMain.src = imgSrc;
+            modalDesc.textContent = project.detailedDesc || project.description || 'No detailed description available.';
+            
+            if (project.link) {
+                modalLink.href = project.link;
+                modalLink.style.display = 'inline-block';
+            } else {
+                modalLink.style.display = 'none';
+            }
+            
+            modalScreenshotsContainer.innerHTML = '';
+            let screenHTML = '';
+            if (project.screenshot1) {
+                screenHTML += `<img src="${project.screenshot1}" alt="Screenshot 1">`;
+            }
+            if (project.screenshot2) {
+                screenHTML += `<img src="${project.screenshot2}" alt="Screenshot 2">`;
+            }
+            modalScreenshotsContainer.innerHTML = screenHTML;
+
+            // Show modal and disable body scrolling
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeModal = () => {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
 
     // Initial Fetch
     if (projectsContainer) {

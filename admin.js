@@ -77,26 +77,35 @@ addProjectForm.addEventListener('submit', async (e) => {
     const title = document.getElementById('proj-title').value;
     const category = document.getElementById('proj-category').value;
     let imageUrl = document.getElementById('proj-image').value;
+    let screenshot1 = document.getElementById('proj-screenshot1').value;
+    let screenshot2 = document.getElementById('proj-screenshot2').value;
     const link = document.getElementById('proj-link').value;
     const description = document.getElementById('proj-desc').value;
+    const detailedDesc = document.getElementById('proj-detailed-desc').value;
 
     // Convert Google Drive sharing link to direct image view link
-    try {
-        if (imageUrl) {
-            const urlObj = new URL(imageUrl);
-            if (urlObj.hostname.includes('drive.google.com')) {
-                const paths = urlObj.pathname.split('/');
-                if (paths.includes('file') && paths.includes('d')) {
-                    const fileId = paths[paths.indexOf('d') + 1];
-                    imageUrl = `https://lh3.googleusercontent.com/d/${fileId}`;
-                } else if (urlObj.searchParams.get('id')) {
-                    imageUrl = `https://lh3.googleusercontent.com/d/${urlObj.searchParams.get('id')}`;
+    const fixGoogleDriveUrl = (url) => {
+        try {
+            if (url) {
+                const urlObj = new URL(url);
+                if (urlObj.hostname.includes('drive.google.com')) {
+                    const paths = urlObj.pathname.split('/');
+                    if (paths.includes('file') && paths.includes('d')) {
+                        const fileId = paths[paths.indexOf('d') + 1];
+                        return `https://lh3.googleusercontent.com/d/${fileId}`;
+                    } else if (urlObj.searchParams.get('id')) {
+                        return `https://lh3.googleusercontent.com/d/${urlObj.searchParams.get('id')}`;
+                    }
                 }
             }
-        }
-    } catch (e) {
-        // Handled silently
-    }
+        } catch (e) {}
+        return url;
+    };
+    
+    imageUrl = fixGoogleDriveUrl(imageUrl);
+    screenshot1 = fixGoogleDriveUrl(screenshot1);
+    screenshot2 = fixGoogleDriveUrl(screenshot2);
+
     const btn = document.getElementById('add-project-btn');
 
     try {
@@ -107,8 +116,11 @@ addProjectForm.addEventListener('submit', async (e) => {
             title: title,
             category: category,
             imageUrl: imageUrl, 
+            screenshot1: screenshot1,
+            screenshot2: screenshot2,
             link: link,
             description: description,
+            detailedDesc: detailedDesc,
             createdAt: new Date().toISOString()
         });
 

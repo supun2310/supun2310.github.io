@@ -228,6 +228,35 @@
                 </form>
             </div>
         </section>
+
+        <!-- Project Details Modal -->
+        <div id="project-modal" class="modal-overlay">
+            <div class="modal-content glass-panel">
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+                <div class="modal-header">
+                    <div class="modal-tags" id="modal-tags">
+                        <!-- category injected here -->
+                    </div>
+                    <h2 id="modal-title">Project Title</h2>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="modal-main-img">
+                        <img id="modal-img-main" src="" alt="Project Image">
+                    </div>
+                    
+                    <div class="modal-text">
+                        <h3>About the Project</h3>
+                        <p id="modal-desc">Project description goes here...</p>
+                        <a href="#" id="modal-link" target="_blank" class="btn btn-primary" style="margin-top: 1.5rem; display: inline-block;">View Live Site <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    
+                    <div class="modal-screenshots" id="modal-screenshots-container">
+                        <!-- screenshot imgs injected here if they exist -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
