@@ -629,8 +629,20 @@ section {
     .project-card {
         flex: 0 0 100%; /* 1 item on small screens */
     }
-    .prev-btn { left: 0; }
-    .next-btn { right: 0; }
+    .projects-slider-wrapper {
+        padding-bottom: 70px;
+    }
+    .slider-btn {
+        top: auto;
+        bottom: 0;
+        transform: none;
+    }
+    .prev-btn { 
+        left: calc(50% - 55px); 
+    }
+    .next-btn { 
+        right: calc(50% - 55px); 
+    }
 }
 
 /* Adjust gap span for loader */
